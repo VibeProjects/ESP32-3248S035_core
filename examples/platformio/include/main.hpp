@@ -11,6 +11,26 @@
 // NOTE: Do NOT make any lvgl API calls from the View constructor. These must be
 //       performed in the View::init() method.
 class Main: public bsp::View {
+private:
+  // Individual button and label references with unique names
+  lv_obj_t *buttonStart = nullptr;
+  lv_obj_t *labelStart = nullptr;
+  
+  lv_obj_t *buttonStop = nullptr;
+  lv_obj_t *labelStop = nullptr;
+  
+  lv_obj_t *buttonMenu = nullptr;
+  lv_obj_t *labelMenu = nullptr;
+  
+  lv_obj_t *buttonSettings = nullptr;
+  lv_obj_t *labelSettings = nullptr;
+  
+  lv_obj_t *buttonReset = nullptr;
+  lv_obj_t *labelReset = nullptr;
+  
+  lv_obj_t *buttonHome = nullptr;
+  lv_obj_t *labelHome = nullptr;
+  
 public:
   Main() = default;
   ~Main() = default;
@@ -40,18 +60,72 @@ public:
     // 2 columns: (280 - 10gap) / 2 = 135px per button
     // Available height: 480px - 40px padding - 20px gap = 420px
     // 3 rows: (420 - 20gap) / 3 = 133px per button
-    for (int i = 1; i <= 6; i++) {
-      lv_obj_t *btn = lv_button_create(flex_container);
-      lv_obj_set_size(btn, 135, 133);
-      lv_obj_set_style_bg_color(btn, lv_color_hex(0x0066CC), 0);
-      lv_obj_set_style_border_width(btn, 2, 0);
-      lv_obj_set_style_border_color(btn, lv_color_hex(0x0099FF), 0);
-      
-      lv_obj_t *label = lv_label_create(btn);
-      lv_label_set_text_fmt(label, "BTN %d", i);
-      lv_obj_center(label);
-      lv_obj_set_style_text_font(label, &lv_font_montserrat_14, 0);
-    }
+    
+    // Button 1: Start
+    buttonStart = lv_button_create(flex_container);
+    lv_obj_set_size(buttonStart, 135, 133);
+    lv_obj_set_style_bg_color(buttonStart, lv_color_hex(0x0066CC), 0);
+    lv_obj_set_style_border_width(buttonStart, 2, 0);
+    lv_obj_set_style_border_color(buttonStart, lv_color_hex(0x0099FF), 0);
+    labelStart = lv_label_create(buttonStart);
+    lv_label_set_text(labelStart, "Start");
+    lv_obj_center(labelStart);
+    lv_obj_set_style_text_font(labelStart, &lv_font_montserrat_14, 0);
+    
+    // Button 2: Stop
+    buttonStop = lv_button_create(flex_container);
+    lv_obj_set_size(buttonStop, 135, 133);
+    lv_obj_set_style_bg_color(buttonStop, lv_color_hex(0x0066CC), 0);
+    lv_obj_set_style_border_width(buttonStop, 2, 0);
+    lv_obj_set_style_border_color(buttonStop, lv_color_hex(0x0099FF), 0);
+    labelStop = lv_label_create(buttonStop);
+    lv_label_set_text(labelStop, "Stop");
+    lv_obj_center(labelStop);
+    lv_obj_set_style_text_font(labelStop, &lv_font_montserrat_14, 0);
+    
+    // Button 3: Menu
+    buttonMenu = lv_button_create(flex_container);
+    lv_obj_set_size(buttonMenu, 135, 133);
+    lv_obj_set_style_bg_color(buttonMenu, lv_color_hex(0x0066CC), 0);
+    lv_obj_set_style_border_width(buttonMenu, 2, 0);
+    lv_obj_set_style_border_color(buttonMenu, lv_color_hex(0x0099FF), 0);
+    labelMenu = lv_label_create(buttonMenu);
+    lv_label_set_text(labelMenu, "Menu");
+    lv_obj_center(labelMenu);
+    lv_obj_set_style_text_font(labelMenu, &lv_font_montserrat_14, 0);
+    
+    // Button 4: Settings
+    buttonSettings = lv_button_create(flex_container);
+    lv_obj_set_size(buttonSettings, 135, 133);
+    lv_obj_set_style_bg_color(buttonSettings, lv_color_hex(0x0066CC), 0);
+    lv_obj_set_style_border_width(buttonSettings, 2, 0);
+    lv_obj_set_style_border_color(buttonSettings, lv_color_hex(0x0099FF), 0);
+    labelSettings = lv_label_create(buttonSettings);
+    lv_label_set_text(labelSettings, "Settings");
+    lv_obj_center(labelSettings);
+    lv_obj_set_style_text_font(labelSettings, &lv_font_montserrat_14, 0);
+    
+    // Button 5: Reset
+    buttonReset = lv_button_create(flex_container);
+    lv_obj_set_size(buttonReset, 135, 133);
+    lv_obj_set_style_bg_color(buttonReset, lv_color_hex(0x0066CC), 0);
+    lv_obj_set_style_border_width(buttonReset, 2, 0);
+    lv_obj_set_style_border_color(buttonReset, lv_color_hex(0x0099FF), 0);
+    labelReset = lv_label_create(buttonReset);
+    lv_label_set_text(labelReset, "Reset");
+    lv_obj_center(labelReset);
+    lv_obj_set_style_text_font(labelReset, &lv_font_montserrat_14, 0);
+    
+    // Button 6: Home
+    buttonHome = lv_button_create(flex_container);
+    lv_obj_set_size(buttonHome, 135, 133);
+    lv_obj_set_style_bg_color(buttonHome, lv_color_hex(0x0066CC), 0);
+    lv_obj_set_style_border_width(buttonHome, 2, 0);
+    lv_obj_set_style_border_color(buttonHome, lv_color_hex(0x0099FF), 0);
+    labelHome = lv_label_create(buttonHome);
+    lv_label_set_text(labelHome, "Home");
+    lv_obj_center(labelHome);
+    lv_obj_set_style_text_font(labelHome, &lv_font_montserrat_14, 0);
     
     return true;
   }
