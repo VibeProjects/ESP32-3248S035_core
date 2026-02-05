@@ -40,17 +40,14 @@ bool can_refresh(T const now = msecu32().count()) {
 // and refresh the GUI elements and all other hardware peripherals.
 void setup() {
   target.init();
+  
+  // Disable RGB LED by setting all channels to 0
+  lv_color32_t rgb_off = {0, 0, 0, 0};
+  target.hw<bsp::rgb_type>().set(rgb_off);
 }
 
 void loop() {
-  static uint8_t i_wheel = 0;
   if (can_refresh()) {
-    // The individual hardware peripherals can be accessed via template
-    // parameter on method hw<T>(), where T is the peripheral type:
-    lv_color32_t rgb = target.hw<bsp::rgb_type>().get();
-    i_wheel = wheel(rgb, i_wheel);
-
-    target.hw<bsp::rgb_type>().set(rgb);
     target.update();
   }
 }
