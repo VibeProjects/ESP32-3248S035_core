@@ -10,6 +10,12 @@
 //
 // NOTE: Do NOT make any lvgl API calls from the View constructor. These must be
 //       performed in the View::init() method.
+
+// Forward declarations of button handlers (defined in main.cpp)
+extern void reset_button_handler(lv_event_t *e);
+extern void settings_button_handler(lv_event_t *e);
+extern void stop_button_handler(lv_event_t *e);
+
 class Main: public bsp::View {
 private:
   // Individual button and label references with unique names
@@ -82,6 +88,7 @@ public:
     lv_label_set_text(labelStop, "Stop");
     lv_obj_center(labelStop);
     lv_obj_set_style_text_font(labelStop, &lv_font_montserrat_14, 0);
+    lv_obj_add_event_cb(buttonStop, stop_button_handler, LV_EVENT_CLICKED, nullptr);
     
     // Button 3: Menu
     buttonMenu = lv_button_create(flex_container);
@@ -104,6 +111,7 @@ public:
     lv_label_set_text(labelSettings, "Settings");
     lv_obj_center(labelSettings);
     lv_obj_set_style_text_font(labelSettings, &lv_font_montserrat_14, 0);
+    lv_obj_add_event_cb(buttonSettings, settings_button_handler, LV_EVENT_CLICKED, nullptr);
     
     // Button 5: Reset
     buttonReset = lv_button_create(flex_container);
@@ -115,6 +123,8 @@ public:
     lv_label_set_text(labelReset, "Reset");
     lv_obj_center(labelReset);
     lv_obj_set_style_text_font(labelReset, &lv_font_montserrat_14, 0);
+    lv_obj_add_event_cb(buttonReset, reset_button_handler, LV_EVENT_PRESSED, nullptr);
+    lv_obj_add_event_cb(buttonReset, reset_button_handler, LV_EVENT_RELEASED, nullptr);
     
     // Button 6: Home
     buttonHome = lv_button_create(flex_container);

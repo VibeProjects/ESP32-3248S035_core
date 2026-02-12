@@ -1,5 +1,21 @@
 #include "main.hpp"
 
+// Button event handlers
+void reset_button_handler(lv_event_t *e) {
+  // Push to talk - hold Control+Space while button is pressed
+  Serial.println("RESET Button pressed/released");
+}
+
+void settings_button_handler(lv_event_t *e) {
+  // Send Control+Backspace
+  Serial.println("SETTINGS Button clicked");
+}
+
+void stop_button_handler(lv_event_t *e) {
+  // Send Control+Z
+  Serial.println("STOP Button clicked");
+}
+
 uint8_t wheel(lv_color32_t &rgb, uint8_t const i, int8_t const step = 1) {
   uint8_t curr = i;
   uint8_t next = i + step;
@@ -39,6 +55,9 @@ bool can_refresh(T const now = msecu32().count()) {
 // The Arduino API requires a setup() and loop(). These are where you initiate
 // and refresh the GUI elements and all other hardware peripherals.
 void setup() {
+  Serial.begin(115200);
+  Serial.println("Starting application...");
+  
   target.init();
   
   // Disable RGB LED by setting all channels to 0
